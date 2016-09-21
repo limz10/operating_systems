@@ -1,0 +1,40 @@
+Mingzhe Li
+
+Operating Systems HW1
+
+Fall 2016
+
+
+1.
+--2.1
+	a) Convenience. An OS makes a computer more convenient to use.
+	b) Efficiency.  An OS enables more efficient way to use the system resources.
+	c) Ability to evolve.  An OS allows development and testing of new functions,
+		while the existing services continue to work.
+
+--2.2
+	The kernel is the most heavily used part of the OS.  It runs the 
+	supervisor mode and responds to calls from processes and interrupts.
+
+	
+
+
+
+2. 
+	These instructions are called by the OS when it gives control 
+	to a user
+ program.  Therefore, they are usually privileged instructions.
+	
+	Applications trying to run these instructions are illegal, 
+	
+	and thus will raise a hardware exception.
+
+
+
+
+
+3.
+	
+	The hardware will switch from user mode to supervisor mode, 
+	and the OS 
+will take control.  The OS has a function to handle interrupts. 
