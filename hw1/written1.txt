@@ -7,14 +7,29 @@ Fall 2016
 
 1.
 --2.1
-	a) Convenience. An OS makes a computer more convenient to use.
-	b) Efficiency.  An OS enables more efficient way to use the system resources.
-	c) Ability to evolve.  An OS allows development and testing of new functions,
-		while the existing services continue to work.
+	It is somewhat obvious if you draw the illustrations of the workflow.
+	1 job:
+		The CPU utilization will be 50% for both cases.
+		The turnaround time will be N*T for both cases.
+
+	2 jobs:
+		a) The CPU utilization is N/(N+0.5).  Turnaround times are N*T and
+			(N+0.5)*T.  Throughput (N+0.25)*T.
+		b) The CPU utilization is N/(N+0.25).  Turnaround times are N*T and
+			(N+0.25)*T.  Throughput (N+0.125)*T.
+
+	4 jobs:
+		a) The CPU utilization is 2n/(2N+0.5).  Turnaround times are (2N-1)*T,
+			(2N-0.5)*T, 2N*T, (2N+0.5)*T.  Throughput (2N-0.25)*T.
+		b) The CPU utilization is 2N/(2N+0.25).  Turnaround times are 
+			(2N-0.5)*T, (2N-0.25)*T, 2N*T, (2N+0.25)*T.  
+			Throughput (2N+0.875)*T.
 
 --2.2
-	The kernel is the most heavily used part of the OS.  It runs the 
-	supervisor mode and responds to calls from processes and interrupts.
+	Because it use little processor time, it thus favors I/O-bound processes.
+	It won't deny access to the processor-bound programs permanently, because
+	I/O-bound programs spend more time waiting, and there is opportunity 
+	for processor-bound programs to do the work.
 
 	
 
