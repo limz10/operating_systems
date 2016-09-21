@@ -36,5 +36,9 @@ Fall 2016
 3.
 	
 	The hardware will switch from user mode to supervisor mode, 
-	and the OS 
-will take control.  The OS has a function to handle interrupts. 
+	and the OS will take control.  The OS has a function to handle interrupts. 
+
+	It saves all the states and registers for the later correct execution of
+	the process.  It executes the program to handle the interrupt, and then
+	call the "return from interrupt" instruction.  The OS goes on to run 
+	application programs, or enters the idle loop.
