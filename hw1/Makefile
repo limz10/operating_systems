@@ -6,8 +6,8 @@ DEPS = hellofunc.h
 %.o: %.c $(DEPS)
     $(CC) -c -o $@ $< $(CFLAGS)
 
-hellomake: hellomake.o hellofunc.o
-    $(CC) -o hello hellomake.o hellofunc.o -I.
+make: timing.o
+    $(CC) -o timing
 
 clean:
     rm -f *.o *~ core* hello
