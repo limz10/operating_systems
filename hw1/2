@@ -24,7 +24,7 @@ int main (int argc, char** argv) {
             printf("Error forking! %s\n", argv[1]);
          
         if (pid == 0) {
-	char * const childArgv = {argv[1], NULL};
+	char * const childArgv = [argv[1], NULL];
         execve(argv[1], childArgv, NULL);
 	printf("after");
 }
