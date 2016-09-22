@@ -23,16 +23,33 @@ clock_t times(struct tms *buffer);
 
 
 
-main (int argc, char** argv) { 
-    clock_t begin = clock();
+int main (int argc, char** argv) { 
+    struct tms begin, end;
+    pid_t pid;
 
-    fork();
-    execve("./hw1", &argv[1]);
-    
-    clock_t end = clock();
+    times(&begin);
 
-    double utime = (double) (end - begin) / CLOCKS_PER_SEC;
+    while() {
+        pid = fork();
+        if (pid < 0) 
+            printf("Error forking! %s\n", argv[1]);
+         
+        if (pid == 0) {
+            execve(argv[1], &argv[1], NULL);
+            wait();
+        }
+    }
+
+
+    times(&end);
+
+    double user_time = (double) (end.tms_utime - begin.tms_utime) / CLOCKS_PER_SEC;
+    double sys_time = (double) (end.tms_stime - begin.tms_stime) / CLOCKS_PER_SEC;
+    double cuser_time = (double) (end.tms_cutime - begin.tms_cutime) / CLOCKS_PER_SEC;
+    double csys_time = (double) (end.tms_cstime - begin.tms_cstime) / CLOCKS_PER_SEC;
+
+    printf("User Time: %lf\n System Time: %lf\n Child User Time: %lf\n Child System TIme: %lf\n");
+
+    return 0;
 
 } 
-
-
