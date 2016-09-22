@@ -5,7 +5,8 @@
 */
 
 
-#include <stdio.h> 
+#include <stdio.h>
+#include <stdlib.h> 
 #include <sys/times.h>   
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -17,6 +18,8 @@
 int main (int argc, char** argv) { 
     struct tms begin, end;
     pid_t pid;
+	
+	int status;
 
     times(&begin);
 
@@ -28,12 +31,14 @@ int main (int argc, char** argv) {
         if (pid == 0) {
 		printf("before child\n");
 		execve(argv[1], NULL, NULL);
+		exit(0);
 		printf("after child\n");
 	}
 	
 	else {
-		printf("here in parent, PID: %f\n", pid);
-		wait(NULL);   
+		printf("here in parent, PID: %i\n", pid);
+		printf("Child Status: %i\n", WIFEXITED(status));
+		wait(&status);   
 	} 
 		
     }
