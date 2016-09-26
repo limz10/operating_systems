@@ -11,10 +11,10 @@
 2.
 	It measure wall-clock time, which is from the start to the end 
 	of the whole program.
-	User time, which is the user time of the parent process
-	System time, which is the system time of the parent process
-	Child user time, which is the user time of the children process
-	Child system time, which is the system time of the parent process
+	User time, which is the time in user mode of the parent process
+	System time, which is the time in kernel mode of the parent process
+	Child user time, which is the time in user mode of the children process
+	Child system time, which is the time in kernel mode of the parent process
 
 3.
 	Here’s some of my test results:
@@ -50,6 +50,10 @@ Child System TIme:	0.000000
 
 
 4.
+	In order to make the numbers more non-trivial, I modified the 
+	child process program to do even more computation and thus takes
+	more time.  I have also tried other programs that take a lot of 
+	time such as programs that encrypt files.
 
 5.
 	The parent process takes significantly smaller time than
@@ -60,4 +64,5 @@ Child System TIme:	0.000000
 	The numbers shown from the test result clearly tells that they do not 
 	sum to the total wall-clock time.
 
-
+	That is probably because the wall-clock time record includes time taken
+	by processes such as I/O and others.
