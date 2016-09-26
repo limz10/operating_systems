@@ -49,7 +49,7 @@ int main (int argc, char** argv) {
         }              
 
 
-        begin_clock = times(&end);
+        end_clock = times(&end);
 
         double wall_clock = (double) (end_clock - begin_clock) / CLOCKS_PER_SEC;
         double user_time = (double) (end.tms_utime - begin.tms_utime) / CLOCKS_PER_SEC;
@@ -57,8 +57,9 @@ int main (int argc, char** argv) {
         double cuser_time = (double) (end.tms_cutime - begin.tms_cutime) / CLOCKS_PER_SEC;
         double csys_time = (double) (end.tms_cstime - begin.tms_cstime) / CLOCKS_PER_SEC;
 
-        printf("\nReal Time:\t\t%lf", wall_clock);
-        printf("\nUser Time:\t\t%lf\nSystem Time:\t\t%lf\nChild User Time:\t%lf\nChild System TIme:\t%lf\n", 
+        printf("Real Time:\t\t%lf", wall_clock);
+        printf("\nUser Time:\t\t%lf\nSystem Time:\t\t%lf\n
+		Child User Time:\t%lf\nChild System Time:\t%lf\n", 
                 user_time, sys_time, cuser_time, csys_time); 
 
         return 0;
