@@ -30,7 +30,7 @@ int main (int argc, char** argv) {
 
         begin_clock = times(&begin);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 50; i++) {
                 pid = fork();
                 if (pid < 0) 
                         printf("Error forking! %s\n", argv[1]);
@@ -58,8 +58,7 @@ int main (int argc, char** argv) {
         double csys_time = (double) (end.tms_cstime - begin.tms_cstime) / CLOCKS_PER_SEC;
 
         printf("Real Time:\t\t%lf", wall_clock);
-        printf("\nUser Time:\t\t%lf\nSystem Time:\t\t%lf\n
-		Child User Time:\t%lf\nChild System Time:\t%lf\n", 
+        printf("\nUser Time:\t\t%lf\nSystem Time:\t\t%lf\nChild User Time:\t%lf\nChild System Time:\t%lf\n\n", 
                 user_time, sys_time, cuser_time, csys_time); 
 
         return 0;

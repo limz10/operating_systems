@@ -7,6 +7,7 @@
 	The measured program is a pi calculator written in C. 
 	It uses the Gregory formula to approximate the value of pi.
 	It should be accurate to 8000 valid digits.
+	The parent process will loop for 50 times.
 
 2.
 	It measure wall-clock time, which is from the start to the end 
@@ -14,46 +15,47 @@
 	User time, which is the time in user mode of the parent process
 	System time, which is the time in kernel mode of the parent process
 	Child user time, which is the time in user mode of the children process
-	Child system time, which is the time in kernel mode of the parent process
+	Child system time, which is the time in kernel mode of the 
+	parent process
 
 3.
 	Here’s some of my test results:
 ~/Desktop/comp111/hw1 > ./timing pi
-
-Real Time:		0.000557
+Real Time:		0.002350
 User Time:		0.000000
 System Time:		0.000000
-Child User Time:	0.000554
-Child System TIme:	0.000000
+Child User Time:	0.002333
+Child System Time:	0.000002
+
 ~/Desktop/comp111/hw1 > ./timing pi
-
-Real Time:		0.000504
+Real Time:		0.002752
 User Time:		0.000000
 System Time:		0.000000
-Child User Time:	0.000501
-Child System TIme:	0.000000
+Child User Time:	0.002741
+Child System Time:	0.000001
+
 ~/Desktop/comp111/hw1 > ./timing pi
-
-Real Time:		0.000511
+Real Time:		0.002396
 User Time:		0.000000
 System Time:		0.000000
-Child User Time:	0.000508
-Child System TIme:	0.000000
+Child User Time:	0.002387
+Child System Time:	0.000002
+
 ~/Desktop/comp111/hw1 > ./timing pi
-
-Real Time:		0.000565
+Real Time:		0.002430
 User Time:		0.000000
 System Time:		0.000000
-Child User Time:	0.000562
-Child System TIme:	0.000000
-
+Child User Time:	0.002418
+Child System Time:	0.000003
 
 
 4.
 	In order to make the numbers more non-trivial, I modified the 
 	child process program to do even more computation and thus takes
-	more time.  I have also tried other programs that take a lot of 
-	time such as programs that encrypt files.
+	more time.  What is more, the parent process is looped for 50 times.
+	I have also tried other programs that take a lot of 
+	time such as programs that encrypt files, in order to ensure that 
+	the test results show the correct pattern.
 
 5.
 	The parent process takes significantly smaller time than
