@@ -18,8 +18,8 @@
 #include <signal.h>
 
 
-long getTime(struct timespec t) {
-  return t.tv_sec * 1000000000 + t.tv_nsec;
+long convertNano(struct timeval t) {
+  return (t.tv_sec * 1000000 + t.tv_usec) * 1000;
 } 
 
 
@@ -32,14 +32,14 @@ int main(int argc, char const *argv[])
 {
 	double systemCallTime, procCallTime;
 	clock_t startClock, endClock;
-	struct timespec start, end;
+	struct timeval start, end;
 
 	startClock = gettimeofday(&start, NULL);
 	for (long i = 0; i < 1000000000; i++)
 		getpid();
 	endClock = gettimeofday(&end, NULL);
 	printf("Start time: %d End time: %d\n", (double)startClock, (double)endClock);
-	systemCallTime = difftime(endClock, startClock);
+	systemCallTime = convertNano(endClock) - convertNano(startClock);
 	printf("Time for System Calls: %d\n", systemCallTime);
 
 	int j;
