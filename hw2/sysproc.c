@@ -26,20 +26,20 @@ int main(int argc, char const *argv[])
 {
 	double systemCallTime, procCallTime;
 	struct timeval start, end;
-	clock_t start_clock, end_clock;
+	clock_t startClock, endClock;
 
-	gettimeofday(&start, NULL);
+	startClock = gettimeofday(&start, NULL);
 	for (long i = 0; i < 1000; i++)
 		getpid();
-	gettimeofday(&end, NULL);
+	endClock = gettimeofday(&end, NULL);
 
 	systemCallTime = (double) (end_clock - start_clock) / CLOCKS_PER_SEC;
 
 	int j;
-	gettimeofday(&start, NULL);
+	startClock = gettimeofday(&start, NULL);
 	for (long i = 0; i < 1000; i++)
 		j = return_10();
-	gettimeofday(&end, NULL);
+	endClock = gettimeofday(&end, NULL);
 
 	procCallTime = (double) (end_clock - start_clock) / CLOCKS_PER_SEC;
 
