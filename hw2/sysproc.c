@@ -39,7 +39,7 @@ int main(int argc, char const *argv[])
 		getpid();
 	endClock = gettimeofday(&end, NULL);
 	printf("Start time: %d End time: %d\n", (double)startClock, (double)endClock);
-	systemCallTime = convertNano(endClock) - convertNano(startClock);
+	systemCallTime = convertNano(end) - convertNano(start);
 	printf("Time for System Calls: %d\n", systemCallTime);
 
 	int j;
