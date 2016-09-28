@@ -44,8 +44,8 @@ int main(int argc, char const *argv[])
 	procCallTime = (double) (endClock - startClock) / CLOCKS_PER_SEC;
 
 
-	printf("Time for System Calls: %f\n", systemCallTime);
-	printf("Time for Procedure Calls: %f\n", procCallTime);
+	printf("Time for System Calls: %d\n", systemCallTime);
+	printf("Time for Procedure Calls: %d\n", procCallTime);
 
 
 	return 0;
