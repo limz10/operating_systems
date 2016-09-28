@@ -48,8 +48,7 @@ int main(int argc, char const *argv[])
 		j = return_10();
 	endClock = gettimeofday(&end, NULL);
 	printf("Start time: %d End time: %d\n", (double)startClock, (double)endClock);
-	procCallTime = (double) (endClock - startClock) / CLOCKS_PER_SEC * 1000000000;
-	
+	procCallTime = convertNano(end) - convertNano(start);
 	printf("Time for Procedure Calls: %d\n", procCallTime);
 
 
