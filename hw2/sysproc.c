@@ -34,7 +34,7 @@ int main(int argc, char const *argv[])
 	endClock = gettimeofday(&end, NULL);
 	printf("Start time: %d End time: %d\n", (double)startClock, (double)endClock);
 	systemCallTime = (double) (endClock - startClock) / (CLOCKS_PER_SEC * 1000000000);
-	printf("Time for System Calls: %.9d\n", systemCallTime);
+	printf("Time for System Calls: %f\n", systemCallTime);
 
 	int j;
 	startClock = gettimeofday(&start, NULL);
@@ -44,7 +44,7 @@ int main(int argc, char const *argv[])
 	printf("Start time: %d End time: %d\n", (double)startClock, (double)endClock);
 	procCallTime = (double) (endClock - startClock) / (CLOCKS_PER_SEC * 1000000000);
 	
-	printf("Time for Procedure Calls: %.9d\n", procCallTime);
+	printf("Time for Procedure Calls: %f\n", procCallTime);
 
 
 	return 0;
