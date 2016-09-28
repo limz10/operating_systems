@@ -27,6 +27,11 @@ int return_10() {
 	return 10;
 } 
 
+char* memAlloc() {
+	char* string = (char*)malloc(10);
+	return string;
+}
+
 
 int main(int argc, char const *argv[])
 {
@@ -49,7 +54,17 @@ int main(int argc, char const *argv[])
 	endClock = gettimeofday(&end, NULL);
 	printf("Start time: %d End time: %d\n", (double)startClock, (double)endClock);
 	procCallTime = convertNano(end) - convertNano(start);
-	printf("Time for Procedure Calls: %d\n", procCallTime);
+	printf("Time for return_10 Calls: %d\n", procCallTime);
+
+
+	char* j;
+	startClock = gettimeofday(&start, NULL);
+	for (long i = 0; i < 1000000000; i++)
+		j = memAlloc();
+	endClock = gettimeofday(&end, NULL);
+	printf("Start time: %d End time: %d\n", (double)startClock, (double)endClock);
+	procCallTime = convertNano(end) - convertNano(start);
+	printf("Time for memAlloc Calls: %d\n", procCallTime);
 
 
 	return 0;
