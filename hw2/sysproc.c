@@ -25,22 +25,21 @@ int return_10() {
 int main(int argc, char const *argv[])
 {
 	double systemCallTime, procCallTime;
-	struct timeval start, end;
 	clock_t startClock, endClock;
 
-	startClock = gettimeofday(&start, NULL);
+	startClock = clock();
 	for (long i = 0; i < 1000000; i++)
 		getpid();
-	endClock = gettimeofday(&end, NULL);
+	endClock = clock();
 	printf("Start time: %d End time: %d\n", (double)startClock, (double)endClock);
 	systemCallTime = (double) (endClock - startClock) / CLOCKS_PER_SEC;
 
 	int j;
-	startClock = gettimeofday(&start, NULL);
+	startClock = clock(LL);
 	for (long i = 0; i < 1000000; i++)
 		j = return_10();
-	endClock = gettimeofday(&end, NULL);
-
+	endClock = clock();
+	printf("Start time: %d End time: %d\n", (double)startClock, (double)endClock);
 	procCallTime = (double) (endClock - startClock) / CLOCKS_PER_SEC;
 
 
