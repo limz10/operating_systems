@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
 		getpid();
 	endClock = gettimeofday(&end, NULL);
 
-	systemCallTime = (double) (end_clock - start_clock) / CLOCKS_PER_SEC;
+	systemCallTime = (double) (endClock - startClock) / CLOCKS_PER_SEC;
 
 	int j;
 	startClock = gettimeofday(&start, NULL);
@@ -41,7 +41,7 @@ int main(int argc, char const *argv[])
 		j = return_10();
 	endClock = gettimeofday(&end, NULL);
 
-	procCallTime = (double) (end_clock - start_clock) / CLOCKS_PER_SEC;
+	procCallTime = (double) (endClock - startClock) / CLOCKS_PER_SEC;
 
 
 	printf("Time for System Calls: %f\n", systemCallTime);
