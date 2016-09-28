@@ -29,7 +29,7 @@ int main(int argc, char const *argv[])
 	clock_t startClock, endClock;
 
 	startClock = gettimeofday(&start, NULL);
-	for (long i = 0; i < 1000; i++)
+	for (long i = 0; i < 1000000; i++)
 		getpid();
 	endClock = gettimeofday(&end, NULL);
 
@@ -37,7 +37,7 @@ int main(int argc, char const *argv[])
 
 	int j;
 	startClock = gettimeofday(&start, NULL);
-	for (long i = 0; i < 1000; i++)
+	for (long i = 0; i < 1000000; i++)
 		j = return_10();
 	endClock = gettimeofday(&end, NULL);
 
