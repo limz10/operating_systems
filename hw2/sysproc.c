@@ -25,7 +25,7 @@ int return_10() {
 int main(int argc, char const *argv[])
 {
 	double systemCallTime, procCallTime;
-	struct tms start, end;
+	struct timeval start, end;
 	clock_t start_clock, end_clock;
 
 	gettimeofday(&start, NULL);
@@ -35,9 +35,10 @@ int main(int argc, char const *argv[])
 
 	systemCallTime = (double) (end_clock - start_clock) / CLOCKS_PER_SEC;
 
+	int j;
 	gettimeofday(&start, NULL);
 	for (long i = 0; i < 1000; i++)
-		int j = return_10();
+		j = return_10();
 	gettimeofday(&end, NULL);
 
 	procCallTime = (double) (end_clock - start_clock) / CLOCKS_PER_SEC;
