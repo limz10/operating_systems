@@ -18,9 +18,15 @@
 #include <signal.h>
 
 
+long nanosec(struct timeval t) {
+  return (t.tv_sec * 1000000 + t.tv_usec) * 1000;
+} 
+
+
 int return_10() {
 	return 10;
 } 
+
 
 int main(int argc, char const *argv[])
 {
@@ -33,7 +39,7 @@ int main(int argc, char const *argv[])
 		getpid();
 	endClock = gettimeofday(&end, NULL);
 	printf("Start time: %d End time: %d\n", (double)startClock, (double)endClock);
-	systemCallTime = (double) (endClock - startClock) / CLOCKS_PER_SEC * 1000000000;
+	systemCallTime = difftime(endClock, startClock);
 	printf("Time for System Calls: %d\n", systemCallTime);
 
 	int j;
