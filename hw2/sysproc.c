@@ -57,10 +57,10 @@ int main(int argc, char const *argv[])
 	printf("Time for return_10 Calls: %d\n", procCallTime);
 
 
-	char* j;
+	char* k;
 	startClock = gettimeofday(&start, NULL);
 	for (long i = 0; i < 1000000000; i++)
-		j = memAlloc();
+		k = memAlloc();
 	endClock = gettimeofday(&end, NULL);
 	printf("Start time: %d End time: %d\n", (double)startClock, (double)endClock);
 	procCallTime = convertNano(end) - convertNano(start);
