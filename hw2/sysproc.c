@@ -7,11 +7,14 @@
 
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <signal.h>
-#include <unistd.h>
+#include <stdlib.h> 
+#include <sys/times.h>   
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h> 
+#include <limits.h> 
 #include <time.h>
-#include <sys/time.h>
+#include <signal.h>
 
 
 int return_10() {
