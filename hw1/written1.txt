@@ -37,8 +37,7 @@ Fall 2016
 
 2. 
 	These instructions are called by the OS when it gives control 
-	to a user
- program.  Therefore, they are usually privileged instructions.
+	to a user program.  Therefore, they are usually privileged instructions.
 	
 	Applications trying to run these instructions are illegal, 
 	
@@ -56,4 +55,4 @@ Fall 2016
 	It saves all the states and registers for the later correct execution of
 	the process.  It executes the program to handle the interrupt, and then
 	call the "return from interrupt" instruction.  The OS goes on to run 
-application programs, or enters the idle loop.
+	application programs, or enters the idle loop.
