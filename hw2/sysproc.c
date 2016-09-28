@@ -18,8 +18,8 @@
 #include <signal.h>
 
 
-long nanosec(struct timeval t) {
-  return (t.tv_sec * 1000000 + t.tv_usec) * 1000;
+long getTime(struct timespec t) {
+  return t.tv_sec * 1000000000 + t.tv_nsec;
 } 
 
 
@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
 {
 	double systemCallTime, procCallTime;
 	clock_t startClock, endClock;
-	struct timeval start, end;
+	struct timespec start, end;
 
 	startClock = gettimeofday(&start, NULL);
 	for (long i = 0; i < 1000000000; i++)
