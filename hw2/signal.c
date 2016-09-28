@@ -21,7 +21,7 @@ int main(int argc, char const *argv[])
 {
 	signal(SIGINT, alarm_handler);
 	while (1)
-		alarm(5);
+		alarm(10);
 
 	return 0;
 }
