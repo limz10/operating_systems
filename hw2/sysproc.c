@@ -27,17 +27,17 @@ int main(int argc, char const *argv[])
 	struct tms start, end;
 	clock_t start_clock, end_clock;
 
-	gettimeofday(&start);
+	gettimeofday(&start, NULL);
 	for (long i = 0; i < 1000; i++)
 		getpid();
-	gettimeofday(&end);
+	gettimeofday(&end, NULL);
 
 	systemCallTime = (double) (end_clock - start_clock) / CLOCKS_PER_SEC;
 
-	gettimeofday(&start);
+	gettimeofday(&start, NULL);
 	for (long i = 0; i < 1000; i++)
 		int j = return_10();
-	gettimeofday(&end);
+	gettimeofday(&end, NULL);
 
 	procCallTime = (double) (end_clock - start_clock) / CLOCKS_PER_SEC;
 
