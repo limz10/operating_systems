@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
 	for (long i = 0; i < 1000000; i++)
 		getpid();
 	endClock = gettimeofday(&end, NULL);
-	printf("Start time: %f End time: %f\n", (double)startClock, (double)endClock);
+	printf("Start time: %d End time: %d\n", (double)startClock, (double)endClock);
 	systemCallTime = (double) (endClock - startClock) / CLOCKS_PER_SEC;
 
 	int j;
