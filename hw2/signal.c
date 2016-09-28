@@ -19,7 +19,7 @@ void alarm_handler(int signal) {
 
 int main(int argc, char const *argv[])
 {
-	signal(10, alarm_handler);
+	signal(SIGINT, alarm_handler);
 	while (1)
 		alarm(5);
 
