@@ -12,12 +12,13 @@
 #include <unistd.h>
 #include <limits.h>
 #include <math.h>
+#include <string.h>
 #include <pthread.h>
 #include <assert.h>
 #include <ctype.h>
 
 
-void wordCount(FILE *file) {
+int wordCount(FILE *file) {
 	int count = 0;
 	int space = 0;
 	char c;
@@ -29,7 +30,7 @@ void wordCount(FILE *file) {
 			space = 0;
 		}
 
-	printf("Word Count: %d in %s\n", count, file);
+	return count;
 }
 
 
@@ -43,10 +44,12 @@ int main(int argc, char const *argv[])
 
 	pthread_t * thread_ids;
 	thread_ids = calloc(argc, sizeof(pthread_t));
+	int rtn;
+	int totalCount = 0;
 
 	for (int i = 1; i < argc; i++) {
 		FILE *f = fopen(argv[i], "r");
-		if (pthread_create(&(thread_ids+i), NULL, wordCount, f) == 0)
+		if (pthread_create(thread_ids+i, NULL, wordCount, f) == 0)
 		{
 			pthread_join(thread_ids+i, (void *)&rtn);
 			printf("Successfully returned thread with value %d\n", rtn);
@@ -54,9 +57,13 @@ int main(int argc, char const *argv[])
 		else {
 			printf("Could not create thread!\n");
 		}
-
-
-		free(thread_ids);
-		return 0;
+	
+		int count = wordCount(f);
+		printf("Word Count: %d in %s\n", count, argv[i]);
+		totalCount += count;
+		fclose(f);
 	}
+
+	free(thread_ids);
+	return 0;
 }
