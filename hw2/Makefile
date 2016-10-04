@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-I -Wall
+CFLAGS=-lm
 
 
 sysproc: 

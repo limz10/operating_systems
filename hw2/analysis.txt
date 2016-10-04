@@ -1,0 +1,60 @@
+	COMP111
+        Fall 2016
+        HW2 Analysis
+        Mingzhe Li
+
+This program compares system call getpid() with other
+function calls in C.  The result shows that system calls
+take longer time than procedure calls.
+
+The system calls are expected to be more expensive than 
+procedure calls, because a single system call involves many
+actions that are not happening during a procedure call.
+For instance, there must be a space switch as the system calls
+run in the kernel space.  The kernel will verify that the 
+arguments are legal.  Such services yields more overhead time
+of a system call, while a function call is only in user space
+and less overhead time.
+
+One of the benefit of C libraries is that some common
+instructions such as fopen are wrapped within the 
+C runtime library.  This enables the code to run much faster.
+
+In this assigned program, it compares system call getpid()
+and other functions.  Return_10 only returns a value of 10.
+The PowerOfTen calls the pow() function in the math.h and 
+calculates the exponential value of numbers.  Because of the
+mode switching, getpid() will take much longer than the others.
+
+Here's some of the test results:
+
+~/Desktop/comp111/hw2 > ./sysproc
+Avg Time for System Calls: 11.898000
+Avg Time for Return_10 Calls: 6.775000
+Avg Time for Power10 Calls: 5.953000
+
+~/Desktop/comp111/hw2 > ./sysproc
+Avg Time for System Calls: 11.822000
+Avg Time for Return_10 Calls: 6.780000
+Avg Time for Power10 Calls: 5.948000
+
+~/Desktop/comp111/hw2 > ./sysproc
+Avg Time for System Calls: 11.822000
+Avg Time for Return_10 Calls: 6.806000
+Avg Time for Power10 Calls: 5.952000
+
+~/Desktop/comp111/hw2 > ./sysproc
+Avg Time for System Calls: 11.838000
+Avg Time for Return_10 Calls: 6.772000
+Avg Time for Power10 Calls: 5.938000
+
+~/Desktop/comp111/hw2 > ./sysproc
+Avg Time for System Calls: 11.854000
+Avg Time for Return_10 Calls: 6.794000
+Avg Time for Power10 Calls: 5.926000
+
+
+I also experimented to compare with more complex functions
+in C.  Those functions include multiple loops and calculations,
+and surely more time overhead. The result is in line with the theory. 
+
