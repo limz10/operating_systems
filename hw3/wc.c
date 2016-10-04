@@ -49,9 +49,9 @@ int main(int argc, char const *argv[])
 
 	for (int i = 1; i < argc; i++) {
 		FILE *f = fopen(argv[i], "r");
-		if (pthread_create(thread_ids+i, NULL, wordCount, f) == 0)
+		if (pthread_create(thread_ids+i, NULL, (void*)wordCount, f) == 0)
 		{
-			pthread_join(thread_ids+i, (void *)&rtn);
+			pthread_join(*thread_ids+i, (void *)&rtn);
 			printf("Successfully returned thread with value %d\n", rtn);
 		} 
 		else {
