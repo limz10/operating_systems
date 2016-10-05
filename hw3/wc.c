@@ -20,6 +20,11 @@
 
 int wordCount(char* filePath) {
 	FILE *file = fopen(filePath, "r");
+	if (file == NULL) {
+		fprintf (stderr, "file does not exist\n");
+		exit (1); 
+	}
+
 	int count = 0;
 	int space = 0;
 	char c;
