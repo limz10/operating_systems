@@ -18,6 +18,11 @@
 #include <ctype.h>
 
 
+// I tried to create a global struct and use that struct as function arguments.
+// However, I had to submit this working version due to limit of time.
+// Casting pointer types in C becomes very messy.
+// Nevertheless, I would happy to keep on working to improve it as advised by
+// Professor Strange.
 int wordCount(char* filePath) {
 	FILE *file = fopen(filePath, "r");
 	if (file == NULL) {
@@ -54,26 +59,21 @@ int main(int argc, char const *argv[])
 	int rtn = 0;
 	int totalCount = 0;
 
-	for (int i = 1; i < argc; i++) {
+	for (int i = 1; i < argc; i++) 
 		if (pthread_create(thread_ids+i, NULL, (void*)wordCount, (void*)argv[i]) == 0)
 		{
 			pthread_join(*(thread_ids+i), (void *)&rtn);
 			printf("Word Count: %d in %s\n", rtn, argv[i]);
-
+			
 // fprintf(stderr, "ttc = %d\n", totalCount);
-int ftmdx = rtn;
-totalCount += ftmdx;
+			int ftmdx = rtn;
+			totalCount += ftmdx;
 // fprintf(stderr, "tc = %d\n", totalCount);
 
 		} 
-		else {
+		else 
 			printf("Could not create thread!\n");
-		}
 	
-		//int count = wordCount(argv[i]);
-		//printf("Word Count: %d in %s\n", count, argv[i]);
-	}
-
 	printf("Total Word Count: %d\n", totalCount);
 	free(thread_ids);
 	return 0;
