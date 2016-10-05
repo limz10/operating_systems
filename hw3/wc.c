@@ -53,12 +53,12 @@ int main(int argc, char const *argv[])
 		if (pthread_create(thread_ids+i, NULL, (void*)wordCount, (void*)argv[i]) == 0)
 		{
 			pthread_join(*(thread_ids+i), (void *)&rtn);
-			printf("Successfully returned thread with value %d\n", rtn);
+			printf("Word Count: %d in %s\n", rtn, argv[i]);
 
-fprintf(stderr, "ttc = %d\n", totalCount);
+// fprintf(stderr, "ttc = %d\n", totalCount);
 int ftmdx = rtn;
 totalCount += ftmdx;
-fprintf(stderr, "tc = %d\n", totalCount);
+// fprintf(stderr, "tc = %d\n", totalCount);
 
 		} 
 		else {
