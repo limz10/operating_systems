@@ -18,7 +18,8 @@
 #include <ctype.h>
 
 
-int wordCount(FILE *file) {
+int wordCount(char* filePath) {
+	FILE *file = fopen(filePath, "r");
 	int count = 0;
 	int space = 0;
 	char c;
@@ -30,6 +31,7 @@ int wordCount(FILE *file) {
 			space = 0;
 		}
 
+	fclose(file);
 	return count;
 }
 
@@ -44,24 +46,25 @@ int main(int argc, char const *argv[])
 
 	pthread_t * thread_ids;
 	thread_ids = calloc(argc, sizeof(pthread_t));
-	int rtn;
+	int rtn = 0;
 	int totalCount = 0;
 
 	for (int i = 1; i < argc; i++) {
-		FILE *f = fopen(argv[i], "r");
-		if (pthread_create(thread_ids+i, NULL, (void*)wordCount, f) == 0)
+		if (pthread_create(thread_ids+i, NULL, (void*)wordCount, (void*)argv[i]) == 0)
 		{
 			pthread_join(*(thread_ids+i), (void *)&rtn);
 			printf("Successfully returned thread with value %d\n", rtn);
+fprintf(stderr, "ttc = %d\n", totalCount);
+//int ftmd = 10;
+totalCount ++;
+fprintf(stderr, "tc = %d\n", totalCount);
 		} 
 		else {
 			printf("Could not create thread!\n");
 		}
 	
-		int count = wordCount(f);
-		printf("Word Count: %d in %s\n", count, argv[i]);
-		totalCount += count;
-		fclose(f);
+		//int count = wordCount(argv[i]);
+		//printf("Word Count: %d in %s\n", count, argv[i]);
 	}
 
 	free(thread_ids);
