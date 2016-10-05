@@ -46,14 +46,14 @@ int wordCount(char* filePath) {
 }
 
 
-
 int main(int argc, char const *argv[])
 {
+	// check input
 	if (argc < 2) {
 		fprintf (stderr, "usage: ./wc FILE [FILE...]\n");
 		exit (1); 
 	}
-
+	// create threads
 	pthread_t * thread_ids;
 	thread_ids = calloc(argc, sizeof(pthread_t));
 	int rtn = 0;
@@ -64,7 +64,13 @@ int main(int argc, char const *argv[])
 		{
 			pthread_join(*(thread_ids+i), (void *)&rtn);
 			printf("Word Count: %d in %s\n", rtn, argv[i]);
-			
+
+			// created this local variable so it's not segfaulting
+			// 4hrs+ investigation spent
+			// 10+ computer scientists consulted
+			// still not sure why
+			// very counterintuitive bug
+			// will keep investigating
 // fprintf(stderr, "ttc = %d\n", totalCount);
 			int ftmdx = rtn;
 			totalCount += ftmdx;
