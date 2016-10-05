@@ -54,10 +54,12 @@ int main(int argc, char const *argv[])
 		{
 			pthread_join(*(thread_ids+i), (void *)&rtn);
 			printf("Successfully returned thread with value %d\n", rtn);
+
 fprintf(stderr, "ttc = %d\n", totalCount);
-//int ftmd = 10;
-totalCount ++;
+int ftmdx = rtn;
+totalCount += ftmdx;
 fprintf(stderr, "tc = %d\n", totalCount);
+
 		} 
 		else {
 			printf("Could not create thread!\n");
@@ -67,6 +69,7 @@ fprintf(stderr, "tc = %d\n", totalCount);
 		//printf("Word Count: %d in %s\n", count, argv[i]);
 	}
 
+	printf("Total Word Count: %d\n", totalCount);
 	free(thread_ids);
 	return 0;
 }

@@ -6,4 +6,4 @@ wc:
 	$(CC) $(CFLAGS) wc.c -o wc
 
 clean:
-	rm -f *.o *~ core* wc
+	rm -f *.o *~ core* vgcore* wc
