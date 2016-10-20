@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <assert.h>
 #include <termcap.h>
+#include <errno.h>
 
 
 // quit
@@ -48,14 +49,31 @@ void shell_echo(char * arg) {
 }
 
 
+// this function waits for keyboard input
+// and returns whenever ENTER is pressed
+void shell_pause() {
+	char ENTER = '\n';
+	char * keyInput;
+	while (keyInput != ENTER)
+		scanf(%c, keyInput);
+}
+
+
 // 
-void shell_pause(char * keyInput) {
+void shell_cd(char * path) {
+	int ret;
+	ret = chdir(path);
+	if (ret == -1)
+		printf("Error: %s\n", strerror(errno));
 
 }
 
 
-
-
+// this function prints out the current directory
+void shell_dir() {
+	char * dir = get_current_dir_name();
+	printf("%s\n", dir);
+}
 
 
 
