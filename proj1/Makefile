@@ -2,8 +2,8 @@ CC=gcc
 CFLAGS=-I -Wall -lpthread -lncurses
 
 
-shell:
+all:
 	$(CC) $(CFLAGS) shell.c -o shell
 
 clean:
-rm -f *.o *~ core* vgcore* shell
+	rm -f *.o *~ core* vgcore* shell
