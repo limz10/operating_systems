@@ -1,0 +1,98 @@
+README
+Comp 111 Project 1 
+John Mei Jin Koh	         					jkoh01
+Mingzhe Li                       					mli04
+
+
+Design Overview:
+
+        List of Files:
+			# Main file #
+                        shell.c
+
+                        # User Manual #
+			User Manual
+
+                        # Makefile #
+                        Makefile
+
+Shell.c is a basic implementation of a generic shell that has the following 
+native functions: cd, clr, dir, echo, environ, help, pause, and quit, as well 
+as being able to execute other programs. A critical design change here is that 
+all commands are executed in its own separate child process, and is waited on/
+ran concurrently depending on the commands used.
+
+After reading in the commands, either via the terminal (INTERACTIVE_MODE) or 
+via a batch file (BATCH_MODE), the input is split line by line (via “\n”) and/
+or command by command (via “;”), and stored in an array. The elements in the 
+array is further split into the commands themselves (in “cmd”) and the 
+arguments (in “cmd_argv”).
+
+
+
+The child process spawning here is designed so that any malfunctions in the 
+child processes will not affect the parent process; the only downside would be 
+if the child processes was not spawned in concurrent mode via the “;” command, 
+(for the extra credit implementation) the parent process would need to wait 
+for the child process to end/return by itself before it is able to proceed to 
+the next command. Otherwise in concurrent mode, the parent process implements 
+a 'fire and forget' design where it fires off child processes and does not 
+wait for the child process to come back/return before executing the next 
+command. We initially used a background signal handler to prevent any zombie 
+child processes from occurring, however, as the specifications mentioned that 
+the shell should not be affected/hang when the child processes crash, the 
+background signal handler was removed in favor of using a simple waitpid that 
+handles those cases for us. An array of arrays was used to handle the 
+commands, whereas another array of arrays handled all the arguments. The 
+output_file is updated on the fly to stdout or a file depending on if piping 
+is requested or not. A small sleep is also implemented at the start of the 
+interactive mode before printing the shell prompt; this is used for aesthetic 
+issues when a series of fast child processes are ran (like echo) concurrently 
+as it ensures that the prompt will appear after the fast child processes are 
+done. 
+
+
+When exiting the shell, the shell waits for any child processes to terminate 
+before exiting via waitpid.
+
+
+
+
+Specification:
+
+If the command that it reads in is blank, the shell does nothing. Our shell 
+handles lines that have no commands between any semi-colons as well. Our shell 
+will also handle extra spaces or tabs between instructions. A notable design 
+flaw is that the read-in buffer is limited to 1024 characters, as a specific 
+buffer size was not specified in the requirements. A unlimited realloc 
+implementation was not pursued as it might be a possible security vector if 
+the user attempts to put in a large amount of characters. The ampersand at the 
+end (if present) is replaced internally as a semicolon as due to the extra 
+credit implementation it is synonymous to the semicolon in terms of 
+functionality. More then 1 space between echo and its arguments is kept, 
+whereas spaces between the pipe out symbol and the file location is removed in 
+order to prevent a file with “ Output” being created. In the parent process, 
+the SHELL environment variable is updated to reflect the current shell 
+executable dynamically, and in the child processes another PARENT environment 
+variable is created to reflect the parent shell location. The CTRL-D exit 
+requirement was handled before each read in by the input by exiting if an EOF 
+char was read in.
+
+All given commands and the extra credit implementations operate within the 
+specifications of the given documentation. 
+        
+
+
+
+Extra Credit Implementation:
+
+
+We implemented concurrency from the start by having most commands (apart from 
+cd and quit) handled by child processes. Non-concurrency was simply the fact 
+that main execution loop waited for the current process via waitpid to end 
+before executing another. An array of integers were set up when the input was 
+obtained from the user via interactive mode or batch mode, and was set to 1 if 
+the command had a semicolon appended. A wait was executed at the end of any 
+non semicolon ending command/ command and argument set whereas in the other 
+case it would not wait for it to end.
+

@@ -1,73 +1,61 @@
-User Manual
+Basic Shell User Manual
 
-This is a basic shell.
+Name
+    Help Guide
 
+Description
+    
+    This manual outlines all the commands that this shell supports and its 
+    usages.
 
+Usage
 
+Here are the following commands supported by the shell, along with their 
+invocation and usage.
 
+        cd <directory> : This command changes the current directory to the one 
+        specified in the <directory> argument. 
 
+If no argument is present, it simply reports the current directory. Change  
+the  current directory to directory.
 
+        clr : Clears the screen
 
+        dir <directory> : Lists the contents of the directory specified in the 
+        <directory> argument.
 
+            If no argument is present, it simply lists contents of the current 
+            directory. 
 
-This is a basic shell.
 
+        environ: Lists all the environment strings of the shell. 
 
+        echo <comment> : Prints <comment> and then prints a newline at the end.
 
+        help : Invoke this user manual
 
+        pause  : Pauses operation of the shell until 'Enter' is pressed.
 
+        quit : Waits for all child processes to finish and then exits the 
+        shell. Users may also use 'Control-D' to end their current session. 
 
 
+All other command line inputs are interpreted as program invocation.
 
+    Usage examples:
 
+        ./<exec> to run executable in local directory or
 
+        path/to/exec to run executable to any arbitrary executable path
 
+The shell also supports I/O redirection with the use of the '>' and the '>>' 
+commands. '>' creates/overwrites an existing file, and '>>' tries to append to 
+an existing file if present, or creates and writes into a new file.
 
 
+Background process for the specific command are enabled if '&' is appended at 
+the end of a command. If the commands are separated with a ';', the processes 
+are ran concurrently before returning to the user.
 
 
 
-
-
-This is a basic shell.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-This is a basic shell.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-This is a basic shell.
-
-
-
-
-
-
-This is the end of the user manual.
